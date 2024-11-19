@@ -4,10 +4,60 @@ body {
     padding: 0;
 }
 header {
-    background-color: #333;
+    background: url('image') no-repeat center center/cover;
     color: white;
-    padding: 20px;
     text-align: center;
+    padding: 100px 20px;
+}
+header h1 {
+    font-size: 3em;
+}
+section {
+    padding: 20px;
+}
+.row-1 {
+    background-color: #b66b25e3; 
+    color: white;
+    padding: 20px 0;
+}
+.row-2 {
+    background-color: #a7c0b3;
+    color: black;
+    padding: 20px 0;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+.row img {
+    width: 60%; 
+    height: auto;
+}
+.text-left {
+    width: 45%;
+}
+.text-right {
+    width: 45%;
+    margin-left:7px
+}
+.flex-cards {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.card {
+    background-color: #ecd4d493;
+    border: 1px solid #14a9eea1;
+    border-radius: 5px;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+}
+img {
+    width: 100%;
 }
 button {
     background-color: orangered;
