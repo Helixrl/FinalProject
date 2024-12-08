@@ -1,29 +1,25 @@
 <?php
-// register.php - Registration page
-session_start();
-require_once 'config.php';
-require_once 'auth.php';
-
-$error_message = '';
-$success_message = '';
+require 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['register'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
-        
-        if ($password !== $confirm_password) {
-            $error_message = 'Passwords do not match';
-        } else if (strlen($password) < 6) {
-            $error_message = 'Password must be at least 6 characters';
-        } else {
-            if (register_user($pdo, $username, $password)) {
-                $success_message = 'Registration successful! You can now login.';
-            } else {
-                $error_message = 'Username already exists';
-            }
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    if (!empty($username) && !empty($password)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            $stmt->execute(['username' => $username, 'password' => $hashed_password]);
+            header('Location: login.php');
+            exit;
+        } catch (PDOException $e) {
+            $error = "Error: Username already exists.";
         }
+    } else {
+        $error = "All fields are required.";
     }
 }
 ?>
@@ -32,35 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register - Betty's Book Banning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="auth-container">
+    <div class="form-container">
         <h1>Register</h1>
-        <?php if ($error_message): ?>
-            <div class="error"><?php echo htmlspecialchars($error_message); ?></div>
-        <?php endif; ?>
-        <?php if ($success_message): ?>
-            <div class="success"><?php echo htmlspecialchars($success_message); ?></div>
-        <?php endif; ?>
-        
-        <form method="POST" action="" class="auth-form">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-            </div>
-            <button type="submit" name="register">Register</button>
+        <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
+        <form method="POST" action="register.php">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login here</a></p>
     </div>
 </body>
 </html>
