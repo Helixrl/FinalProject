@@ -68,110 +68,53 @@ $stmt = $pdo->query($sql);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Betty's Book Banning and Bridge Building</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Task Manager</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
     <!-- Hero Section -->
-    <div class="hero-section">
-        <h1 class="hero-title">Betty's Book Banning and Bridge Building</h1>
-        <p class="hero-subtitle">"Because nothing brings a community together like collectively deciding what others shouldn't read!"</p>
-        
-        <!-- Search moved to hero section -->
-        <div class="hero-search">
-            <h2>Search for a Book to Ban</h2>
-            <form action="" method="GET" class="search-form">
-                <label for="search">Search by Title:</label>
-                <input type="text" id="search" name="search" required>
-                <input type="submit" value="Search">
-            </form>
-            
-            <?php if (isset($_GET['search'])): ?>
-                <div class="search-results">
-                    <h3>Search Results</h3>
-                    <?php if ($search_results && count($search_results) > 0): ?>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>artist</th>
-                                    <th>Title</th>
-                                    <th>real_name</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($search_results as $row): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($row['id']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['artist']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['title']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['real_name']); ?></td>
-                                    <td>
-                                        <form action="index5.php" method="post" style="display:inline;">
-                                            <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
-                                            <input type="submit" value="Ban!">
-                                        </form>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php else: ?>
-                        <p>No books found matching your search.</p>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
+    <header class="hero">
+        <h1>Personalized Task Manager</h1>
+        <p>Organize your task, track your progress, and achieve your goals effortlessly.</p>
+    </header>
+    <!-- First Row -->
+    <section class="row-1">
+        <div class="row">
+            <article class="text-left">
+                <h2>Final</h2>
+                <p>Final</p>
+            </article>
+            <img src="image" alt="image">
         </div>
-    </div>
+    </section>
 
-    <!-- Table section with container -->
-    <div class="table-container">
-        <h2>All Books in Database</h2>
-        <table class="half-width-left-align">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>artist</th>
-                    <th>Title</th>
-                    <th>real_name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $stmt->fetch()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['id']); ?></td>
-                    <td><?php echo htmlspecialchars($row['artist']); ?></td>
-                    <td><?php echo htmlspecialchars($row['title']); ?></td>
-                    <td><?php echo htmlspecialchars($row['real_name']); ?></td>
-                    <td>
-                        <form action="index5.php" method="post" style="display:inline;">
-                            <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
-                            <input type="submit" value="Ban!">
-                        </form>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+    <!-- Second Row -->
+    <section class="row-2">
+        <div class="row">
+            <img src="image" alt="image">
+            <article class="text-right">
+                <h2>Final</h2>
+                <p>Final</p>
+            </article>
+        </div>
 
-    <!-- Form section with container -->
-    <div class="form-container">
-        <h2>Condemn a Book Today</h2>
-        <form action="index5.php" method="post">
-            <label for="artist">artist:</label>
-            <input type="text" id="artist" name="artist" required>
-            <br><br>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-            <br><br>
-            <label for="real_name">real name:</label>
-            <input type="text" id="real_name" name="real_name" required>
-            <br><br>
-            <input type="submit" value="Condemn Book">
-        </form>
-    </div>
+        <!-- Flexbox Row with Three Cards -->
+        <div class="flex-cards">
+            <article class="card">
+                <h3>Final</h3>
+                <p>Final</p>
+            </article>
+            <article class="card">
+                <h3>Final</h3>
+                <p>Final</p>
+            </article>
+            <article class="card">
+                <h3>Final</h3>
+                <p>Final</p>
+            </article>
+        </div>
+    </section>
 </body>
 </html>
