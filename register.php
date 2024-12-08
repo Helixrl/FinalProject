@@ -1,6 +1,7 @@
 <?php
 require 'config.php';
-
+// Note to self - Finished Register and Config, next is login.php
+// also test if register form is working and adding to database
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
