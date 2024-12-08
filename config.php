@@ -2,8 +2,8 @@
 // config.php - Database configuration
 $host = 'localhost'; 
 $dbname = 'task_manager'; 
-$user = 'root'; 
-$pass = '';
+$user = 'chase'; 
+$pass = 'chase';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
