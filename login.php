@@ -23,31 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Chase's Artist Log</title>
+    <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="auth-container">
-        <h1>Login</h1>
-        <?php if ($error_message): ?>
-            <div class="error"><?php echo htmlspecialchars($error_message); ?></div>
-        <?php endif; ?>
-        
-        <form method="POST" action="" class="auth-form">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" name="login">Login</button>
-        </form>
-        <p>Don't have an account? <a href="register.php">Register here</a></p>
-    </div>
+<div class="form-container">
+    <h1>Login</h1>
+    <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
+    <form method="POST" action="login.php">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
 </body>
 </html>
