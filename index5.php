@@ -1,19 +1,12 @@
 <?php
 
 session_start();
-require_once 'auth.php';
+require 'config.php';
 
-// Check if user is logged in
-if (!is_logged_in()) {
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-
-$host = 'localhost'; 
-$dbname = 'songs'; 
-$user = 'root'; 
-$pass = 'mysql';
-$charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $options = [

@@ -1,5 +1,5 @@
 <?php
-// config.php - Database configuration
+// config.php - Database
 $host = 'localhost'; 
 $dbname = 'task_manager'; 
 $user = 'root'; 
