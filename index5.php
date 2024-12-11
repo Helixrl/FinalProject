@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task'])) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['user_id' => $user_id, 'task' => $task, 'due_date' => $due_date]);
 
-        header('Location: index.php');
+        header('Location: index5.php');
         exit;
     }
 }
@@ -53,7 +53,7 @@ $tasks = $stmt->fetchAll();
     </ul>
 
     <h2>Add Task</h2>
-    <form method="POST" action="index.php">
+    <form method="POST" action="index5.php">
         <input type="text" name="task" placeholder="Task description" required>
         <input type="date" name="due_date" required>
         <button type="submit">Add Task</button>
