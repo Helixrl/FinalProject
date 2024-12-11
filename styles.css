@@ -1,52 +1,164 @@
+/* 
+    Used LLM to help with root, could not figure out how to have 
+    the same central style 
+*/
+/* 
+    I also had the LLM to explain it and i understand how it 
+    works better now and used that information further in my 
+    styles sheet, so when you see me refer to it, thats because
+    the LLM explained how to use it better and then i got it
+*/
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #45a049;
+    --background-color: #f0f0f0;
+    --text-color: #333;
+    --white: #ffffff;
+}
+/* Used LLM for the background color, color, and min- height */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+/* Hero Section (LLM helped with color) */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
     padding: 20px;
-    width: 300px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+/* LLM helped with transition for a bit of flair */
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Features Section (LLM helped with the feature-grid and card styles) */
+.features {
+    padding: 50px 0;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.feature-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.task-form {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Used LLM to help with task-list and card styles */
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* 
+    for all the colors in the styles below, i asked LLM how to 
+    add colors to it, without telling me the code
+*/
+.task-card.completed {
+    background-color: #e8f5e9;
+}
+
+.task-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.main-footer {
+    background-color: var(--white);
+    padding: 20px 0;
+    margin-top: auto;
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
+/* Responsive Design (Used LLM to help me make it look a bit better and it suggested @media styles) */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .task-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 .error {
-    color: red;
-    margin-bottom: 10px;
+    color: #f44336;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: var(--primary-color);
+    background-color: #e8f5e9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
