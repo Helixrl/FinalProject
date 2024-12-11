@@ -31,56 +31,33 @@ $tasks = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalized Task Manager</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Personalized Task Manager</h1>
-        <p>Organize your task, track your progress, and achieve your goals effortlessly.</p>
-    </header>
-    <!-- First Row -->
-    <section class="row-1">
-        <div class="row">
-            <article class="text-left">
-                <h2>Final</h2>
-                <p>Final</p>
-            </article>
-            <img src="image" alt="image">
-        </div>
-    </section>
+<div class="main-container">
+    <h1>Task Manager</h1>
+    <p>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+    <a href="logout.php">Logout</a>
 
-    <!-- Second Row -->
-    <section class="row-2">
-        <div class="row">
-            <img src="image" alt="image">
-            <article class="text-right">
-                <h2>Final</h2>
-                <p>Final</p>
-            </article>
-        </div>
+    <h2>Your Tasks</h2>
+    <ul>
+        <?php foreach ($tasks as $task): ?>
+            <li>
+                <?php echo htmlspecialchars($task['task']); ?> 
+                - <?php echo htmlspecialchars($task['due_date']); ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 
-        <!-- Flexbox Row with Three Cards -->
-        <div class="flex-cards">
-            <article class="card">
-                <h3>Final</h3>
-                <p>Final</p>
-            </article>
-            <article class="card">
-                <h3>Final</h3>
-                <p>Final</p>
-            </article>
-            <article class="card">
-                <h3>Final</h3>
-                <p>Final</p>
-            </article>
-        </div>
-    </section>
+    <h2>Add Task</h2>
+    <form method="POST" action="index.php">
+        <input type="text" name="task" placeholder="Task description" required>
+        <input type="date" name="due_date" required>
+        <button type="submit">Add Task</button>
+    </form>
+</div>
 </body>
 </html>
