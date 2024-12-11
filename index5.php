@@ -8,53 +8,26 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+$user_id = $_SESSION['user_id'];
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int)$e->getCode());
-}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['task'])) {
+    $task = trim($_POST['task']);
+    $due_date = $_POST['due_date'];
 
-// Handle book search
-$search_results = null;
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $search_term = '%' . $_GET['search'] . '%';
-    $search_sql = 'SELECT id, artist, title, real_name FROM books WHERE title LIKE :search';
-    $search_stmt = $pdo->prepare($search_sql);
-    $search_stmt->execute(['search' => $search_term]);
-    $search_results = $search_stmt->fetchAll();
-}
+    if (!empty($task) && !empty($due_date)) {
+        $sql = "INSERT INTO tasks (user_id, task, due_date) VALUES (:user_id, :task, :due_date)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['user_id' => $user_id, 'task' => $task, 'due_date' => $due_date]);
 
-// Handle form submissions
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['artist']) && isset($_POST['title']) && isset($_POST['real_name'])) {
-        // Insert new entry
-        $artist = htmlspecialchars($_POST['artist']);
-        $title = htmlspecialchars($_POST['title']);
-        $real_name = htmlspecialchars($_POST['real_name']);
-        
-        $insert_sql = 'INSERT INTO books (artist, title, real_name) VALUES (:artist, :title, :real_name)';
-        $stmt_insert = $pdo->prepare($insert_sql);
-        $stmt_insert->execute(['artist' => $artist, 'title' => $title, 'real_name' => $real_name]);
-    } elseif (isset($_POST['delete_id'])) {
-        // Delete an entry
-        $delete_id = (int) $_POST['delete_id'];
-        
-        $delete_sql = 'DELETE FROM books WHERE id = :id';
-        $stmt_delete = $pdo->prepare($delete_sql);
-        $stmt_delete->execute(['id' => $delete_id]);
+        header('Location: index.php');
+        exit;
     }
 }
 
-// Get all books for main table
-$sql = 'SELECT id, artist, title, real_name FROM books';
-$stmt = $pdo->query($sql);
+$sql = "SELECT * FROM tasks WHERE user_id = :user_id ORDER BY is_completed, due_date";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['user_id' => $user_id]);
+$tasks = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
