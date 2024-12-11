@@ -1,8 +1,7 @@
 <?php
-// config.php - Database
-$host = 'localhost'; 
-$dbname = 'task_manager'; 
-$user = 'root'; 
+$host = 'localhost';
+$dbname = 'task_manager';
+$user = 'root';
 $pass = 'mysql';
 
 try {
@@ -11,4 +10,3 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
-?>
