@@ -1,5 +1,5 @@
 <?php
-
+// Index Page - (Dashboard)
 session_start();
 require 'config.php';
 // Used LLM (Copilot) to help me with the logic for creating a better looking dashboard with more features

@@ -8,6 +8,7 @@
     styles sheet, so when you see me refer to it, thats because
     the LLM explained how to use it better and then i got it
 */
+/* Styles Sheet */
 :root {
     --primary-color: #4CAF50;
     --secondary-color: #45a049;
@@ -27,6 +28,35 @@ body {
     flex-direction: column;
 }
 
+/* Navigation (Used LLM for main-nav style */
+.main-nav {
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* 
+    LLM helped with how and where to incorperate it (not the styles) 
+    for lines 50-58
+*/
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
 
 /* Hero Section (LLM helped with color) */
 .hero {
@@ -86,6 +116,34 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* 
+    Asked LLM to explain more of what a group is when it brought it up
+    and then i used that information for this (no code through LLM)
+*/
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
 .dashboard-container {
     max-width: 1200px;

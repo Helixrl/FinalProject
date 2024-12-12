@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'config.php';
-
+// About Page - (Contact Form)
 // LLM helped me with the php, gave it a previous demo and told it to make it simple
 $message_sent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
